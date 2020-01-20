@@ -39,7 +39,7 @@ def loadModel(productId, model=None):
         moveModels(productId, "SearchModule")
     try:
         loaded_models[productId] = TextSearchModel(modelpackagepath)
-    except ModelFileVerificationFailed:
+    except (ModelFileVerificationFailed, FileNotFoundError) as e:
         moveModels(productId, "SearchModule")
         loaded_models[productId] = TextSearchModel(modelpackagepath)
 
